@@ -42,7 +42,7 @@ async function main() {
     console.log(`Create an AzureInput for ${process.env.INPUT_FILE}...`);
     const input = await bitmovinApi.encoding.inputs.azure.create(
         new AzureInput({
-            name: `${process.env.INPUT_FILE} input`,
+            name: `Inputs container in ${process.env.ACCOUNT_NAME}`,
             accountName: process.env.ACCOUNT_NAME,
             accountKey: process.env.ACCOUNT_KEY,
             container: process.env.CONTAINER_INPUTS
@@ -53,7 +53,7 @@ async function main() {
     console.log(`Create an AzureOutput in ${process.env.ACCOUNT_NAME} (${process.env.CONTAINER_OUTPUTS} container)`);
     const output = await bitmovinApi.encoding.outputs.azure.create(
         new AzureOutput({
-            name: `${process.env.INPUT_FILE} output`,
+            name: `Outputs container in ${process.env.ACCOUNT_NAME}`,
             accountName: process.env.ACCOUNT_NAME,
             accountKey: process.env.ACCOUNT_KEY,
             container: process.env.CONTAINER_OUTPUTS, //Public access level must be blob
@@ -77,7 +77,7 @@ async function main() {
 
     const videoCodecConfiguration2 = await bitmovinApi.encoding.configurations.video.h264.create(
         new H264VideoConfiguration({
-            name: 'Getting Started H264 Codec for 768',
+            name: 'H264 Codec for 768',
             bitrate: 1000000,
             width: 768,
             presetConfiguration: PresetConfiguration.VOD_STANDARD
@@ -86,7 +86,7 @@ async function main() {
 
     const videoCodecConfiguration3 = await bitmovinApi.encoding.configurations.video.h264.create(
         new H264VideoConfiguration({
-            name: 'Getting Started H264 Codec for 640',
+            name: 'H264 Codec for 640',
             bitrate: 750000,
             width: 640,
             presetConfiguration: PresetConfiguration.VOD_STANDARD
@@ -96,7 +96,7 @@ async function main() {
     //Audio Codec Configurations
     const audioCodecConfiguration = await bitmovinApi.encoding.configurations.audio.aac.create(
         new AacAudioConfiguration({
-            name: 'Getting Started Audio Codec Config',
+            name: 'Audio Codec Config',
             bitrate: 128000
         })
     );
