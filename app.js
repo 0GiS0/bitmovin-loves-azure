@@ -28,7 +28,9 @@ const {
     AudioMediaInfo,
     StreamInfo,
     DashRepresentationType,
-    InfrastructureSettings //for Cloud Connect
+    InfrastructureSettings, //for Cloud Connect
+    PrewarmedEncoderPool, //for Pre-warmed pools
+    PrewarmedEncoderDiskSize
 } = require('@bitmovin/api-sdk');
 
 
@@ -110,6 +112,26 @@ async function main() {
             cloudRegion: CloudRegion.AZURE_EUROPE_WEST
         })
     );
+
+    //BETA: Pre-warmed Encoder Pools (https://bitmovin.com/docs/encoding/tutorials/pre-warmed-encoder-pools)
+    // console.log(`Create pre-warmed pool`);
+    // let poolToCreate = new PrewarmedEncoderPool({
+    //     name: "Fast-track encodings",
+    //     description: "Use for encodings that have to be done immediately",
+    //     encoderVersion: "2.77.2",
+    //     infrastructureId: process.env.INFRASTRUCTURE_ID,
+    //     cloudRegion: CloudRegion.AZURE_EUROPE_WEST,
+    //     diskSize: PrewarmedEncoderDiskSize.GB_500,
+    //     targetPoolSize: 1
+    // });
+
+    // let createdPool = await bitmovinApi.encoding.infrastructure.prewarmedEncoderPools.create(poolToCreate);
+    // console.log(`Pre-warmed pool created with id ${createdPool.id}`);
+    // console.log(`Starting the pool ${createdPool.id}`);
+    // await bitmovinApi.encoding.infrastructure.prewarmedEncoderPools.start(createdPool.id);
+
+    // let listOfPools = await bitmovinApi.encoding.infrastructure.prewarmedEncoderPools.list();
+    // console.dir(listOfPools);
 
     //Cloud Connect with Azure
     // console.log(`Create encoding using Cloud Connect`);
