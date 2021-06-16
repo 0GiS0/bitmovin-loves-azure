@@ -27,7 +27,8 @@ const {
     HlsManifest,
     AudioMediaInfo,
     StreamInfo,
-    DashRepresentationType
+    DashRepresentationType,
+    InfrastructureSettings //for Cloud Connect
 } = require('@bitmovin/api-sdk');
 
 
@@ -59,7 +60,7 @@ async function main() {
             container: process.env.CONTAINER_OUTPUTS, //Public access level must be blob
         })
     );
-    
+
     const outputId = output.id;
 
     //Step 5: Create Codec Configurations
@@ -109,6 +110,20 @@ async function main() {
             cloudRegion: CloudRegion.AZURE_EUROPE_WEST
         })
     );
+
+    //Cloud Connect with Azure
+    // console.log(`Create encoding using Cloud Connect`);
+    // const encoding = await bitmovinApi.encoding.encodings.create(
+    //     new Encoding({
+    //         name: `Encoding for ${process.env.INPUT_FILE} using Cloud Connect and Azure`,
+    //         cloudRegion: CloudRegion.EXTERNAL,
+    //         infrastructure: new InfrastructureSettings({
+    //             infrastructureId: process.env.INFRASTRUCTURE_ID,
+    //             cloudRegion: CloudRegion.AZURE_EUROPE_WEST
+    //         })
+    //     })
+    // );
+
 
     //Video Stream  (Encodes the input file to a bitstream using the codec configuration)
     const videoStreamInput1 = new StreamInput({
